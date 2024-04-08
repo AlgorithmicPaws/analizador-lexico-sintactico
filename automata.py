@@ -1,5 +1,3 @@
-import re
-
 class Automaton:
     """
     Class representing a Deterministic Finite Automaton (DFA).
@@ -69,7 +67,7 @@ class Automaton:
             self.counter(symbol)
             next_state = None
             for transition in self.transitions:
-                if transition[0] == current_state and re.match(transition[1], symbol):
+                if transition[0] == current_state and match(transition[1], symbol):
                     state = transition[2]
                     expression += symbol
                     if len(expression) == 1:
@@ -79,7 +77,7 @@ class Automaton:
                     break
             current_state = next_state
 
-            if not self.alphabet.match(symbol):
+            if not match(self.alphabet, symbol):
                 expression = expression[:-1]
                 if len(expression) > 0:
                     self.tokenizer(expression, expression_start_row, expression_start_column, current_state)
@@ -190,5 +188,15 @@ class Automaton:
         else:
             return
     
-
-
+def match(patterns, symbol):
+    """
+    Custom matching function to check if a symbol matches any of the patterns in the list.
+    
+    Args:
+        patterns (list): List of patterns to match against.
+        symbol (str): Symbol to match.
+        
+    Returns:
+        bool: True if the symbol matches any pattern, False otherwise.
+    """
+    return symbol in patterns
