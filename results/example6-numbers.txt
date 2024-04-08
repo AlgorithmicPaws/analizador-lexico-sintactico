@@ -1,0 +1,17 @@
+<tk_float,12.3,1,1>
+<tk_integer,0x1facd1,2,1>
+<tk_integer,0b010101010,3,1>
+<tk_integer,0o175433,4,1>
+<tk_integer,0X1facd1,5,1>
+<tk_integer,0B010101010,6,1>
+<tk_integer,0O175433,7,1>
+<Id,x,8,1>
+<Id,b,9,1>
+<Id,o,10,1>
+<tk_integer,000000021,11,1>
+<tk_integer,12_32,12,1>
+<tk_float,12.32_43,13,1>
+<tk_imaginary,12_32j,14,1>
+<tk_imaginary,12.32_43J,15,1>
+<tk_integer,12_32e21,16,1>
+<tk_float,12.32_43E-12,17,1>

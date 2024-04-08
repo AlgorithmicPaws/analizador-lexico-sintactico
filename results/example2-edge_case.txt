@@ -1,0 +1,9 @@
+<tk_float,2.5598055,1,1>
+<Id,while3,1,10>
+<print,2,1>
+<tk_left_parenthesis,2,6>
+<tk_string,'hola?',2,7>
+<tk_right_parenthesis,2,14>
+<tk_not_equal_to,3,1>
+<tk_integer,88,3,3>
+>>> lexical error,3,6>
