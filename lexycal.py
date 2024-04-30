@@ -1,5 +1,6 @@
 import os
 import automata
+import analyzer
 
 def read_file(file_name):
     """
@@ -234,8 +235,8 @@ def main():
             ('q0','\t', 'q48'),
             ('q0','\n', 'q48'),
             ('q48',alphabet, 'q49'),
-            
         ]   
+
         states = {'q0','q1','q2','q3','q4','q5','q6', 'q7','q8','q9','q10',
                 'q11','q12','q13', 'q14','q15', 'q16','q17','q18','q19','q20',
                 'q21','q22','q23','q24','q25','q26','q27','q28','q29','q30',
@@ -243,8 +244,19 @@ def main():
                 'q41','q42','q43','q44','q45','q46','q47','q48','q49','q50',
                 'q51','q52','q53','q54','q55','q56','q57','q58','q59','q60'}
         initial_state = 'q0'
+
         accepting_states = {'q5','q6','q12','q17','q19','q22','q26', 'q29', 'q32', 'q49', 'q52'}
         afd = automata.Automaton(states, alphabet, initial_state, accepting_states, transitions)
+
+        gramatica = {
+        'E': [['tk_plus', 'T', 'E'], ['tk_minus', 'T', 'E'], ['ε']],
+        'S': [['T', 'E']],
+        'Z': [['tk_asterisk', 'F', 'Z'], ['tk_slash', 'F', 'Z'], ['ε']], 
+        'T': [['F', 'Z']],
+        'F': [['tk_left_parenthesis', 'S','tk_right_parenthesis'], ['Id']],
+        }
+
+        simbolo_inicial = 'E' 
 
         filename = input("Enter the filename: ")
         file_lines = read_file(filename)
@@ -258,12 +270,17 @@ def main():
                 except Exception as e:  
                     #print(f"Lexical error encountered while processing line: {line[:-1]}")
                     print(f"Error: {e}")
-                    break  
+                    break
+            afd.token_list.append(('$',afd.row,afd.column))  
         else:
             print("Unable to read the file.")
 
         if afd.token_list:  
             save_tokens_to_file(afd.token_list, filename)
+            print(afd.token_list)
+            sintax = analyzer.AnalizadorSintactico(afd.token_list, gramatica, simbolo_inicial)
+            sintax.analizar()
+
     
     except FileNotFoundError as e:
         print(e)

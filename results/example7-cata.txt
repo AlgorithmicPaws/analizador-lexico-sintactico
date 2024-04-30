@@ -1,0 +1,6 @@
+<case,1,1>
+<Id,a,1,6>
+<tk_plus,1,7>
+<tk_integer,1,1,8>
+<tk_right_parenthesis,1,9>
+<$,1,10>

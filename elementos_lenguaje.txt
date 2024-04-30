@@ -1,0 +1,61 @@
+Palabras reservadas:(hecho)
+False      await      else       import     pass
+None       break      except     in         raise
+True       class      finally    is         return
+and        continue   for        lambda     try
+as         def        from       nonlocal   while
+assert     del        global     not        with
+async      elif       if         or         yield
+match      case       type       _
+
+
+
+- falta mirar lo de math, case, type (hecho)
+
+- falta mirar lo de "error"  (hecho)
+
+- falta mirar si ponemos mas lbrerías  (hecho)
+
+
+
+Simbolos especiales (hecho)
++       -       *       **      /       //      %      @
+<<      >>      &       |       ^       ~       :=
+<       >       <=      >=      ==      !=
+(       )       [       ]       {       }
+,       :       .       ;       @       =       ->
++=      -=      *=      /=      //=     %=      @=
+&=      |=      ^=      >>=     <<=     **=
+
+simbolos unicos (hecho)
+/,%,@,<,>,&,|,^,:,=,!,(,),[,],{,},;,:,.,-,+,*,~
+simbolos unicos (unique_simbol) (hecho)
+(,),[,],{,},;,.,~
+Simbolos compuestos por = (hecho)
+==,<=,>=,!=,+=,-=,*=,/=,%=,@=,&=,|=,^=,:=,>>=,<<=,**=,//=
+iniciadores
+%,@,&,|,^,:,=,!,+,-(hecho)
+Simbolos compuestos por repe(hecho)
+//,<<,>>,**
+exepciones (hecho)
+->
+(cumplido parcialmente) 
+The following printing ASCII characters have special meaning as part of other tokens or are otherwise significant to the lexical analyzer:
+
+'       "       #       \ (hecho)
+Ignorar comentarios (hecho)
+agregar librerias (hecho)
+agregar numeros complejos(hecho)
+arreglar guardado de exprecion con lista que se vuelve string(hecho)
+__init__(hecho)
+_variable(hecho)
+cientifico NEGARTIVOS(hecho)
+Errores lexicos especiales
+$       ?      `           (cumplido) (revisar en string) 
+2.3.3. Reserved classes of identifiers (revisar, parcialmente incluido)
+
+modularizar()
+2.4.3. f-strings (revisar)
+Decoradores (revisar)
+Hexadecimal y los otros(hecho)
+mandar cientificos a float o int (hecho)
