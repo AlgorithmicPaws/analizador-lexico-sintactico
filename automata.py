@@ -172,7 +172,12 @@ class Automaton:
         elif final_state == 'q22':
             token_type = "tk_string"
             self.token_list.append((token_type, expression, start_row, start_column))
-
+        elif final_state == 'q62':
+            token_type = "tk_indent"
+            self.token_list.append((token_type, start_row, start_column))
+        elif final_state == 'q64':
+            token_type = "tk_line"
+            self.token_list.append((token_type, start_row, start_column))
         elif final_state in ['q19', 'q29', 'q32']:
             # Check for keywords, symbols, or identifiers
             if expression in keywords:

@@ -22,7 +22,10 @@ def read_file(file_name):
         
         current_dir = os.path.dirname(os.path.abspath(__file__))
         with open(os.path.join(current_dir, 'examples', file_name), 'r') as file:
-            return file.readlines()   
+            lines = file.readlines()
+            lines = [line.rstrip() + '\n ' for line in lines]
+            lines = [line.replace('    ', '\t') for line in lines]
+            return lines
     except FileNotFoundError:
         print(f"Error: File '{file_name}' not found.")
         return []
@@ -75,7 +78,10 @@ def save_tokens_to_file(tokens, file_name):
         output_file_name = base_name + ".txt"
         with open(os.path.join(current_dir, 'results', output_file_name), 'w') as file:
             for token in tokens:
-                formatted_token = format_token(token)
+                if token[0] == 'tk_line' or token[0] == 'tk_indent':
+                    continue
+                else:
+                    formatted_token = format_token(token)
                 file.write(formatted_token)
         print("File created successfully.")
     except FileNotFoundError:
@@ -231,9 +237,11 @@ def main():
             ('q47', digits, 'q8'),
             ('q47', alphabet-digits, 'q32'), # . character final state
             # spaces and new line
+            ('q0','\t', 'q61'),
+            ('q61',alphabet, 'q62'),
+            ('q0','\n', 'q63'),
+            ('q63',alphabet, 'q64'),
             ('q0',' ', 'q48'),
-            ('q0','\t', 'q48'),
-            ('q0','\n', 'q48'),
             ('q48',alphabet, 'q49'),
         ]   
 
@@ -242,10 +250,11 @@ def main():
                 'q21','q22','q23','q24','q25','q26','q27','q28','q29','q30',
                 'q31','q32','q33','q34','q35','q36','q37','q38','q39','q40',
                 'q41','q42','q43','q44','q45','q46','q47','q48','q49','q50',
-                'q51','q52','q53','q54','q55','q56','q57','q58','q59','q60'}
+                'q51','q52','q53','q54','q55','q56','q57','q58','q59','q60',
+                'q61','q62','q63','q64','q65'}
         initial_state = 'q0'
 
-        accepting_states = {'q5','q6','q12','q17','q19','q22','q26', 'q29', 'q32', 'q49', 'q52'}
+        accepting_states = {'q5','q6','q12','q17','q19','q22','q26', 'q29', 'q32', 'q49', 'q52','q62','q64'}
         afd = automata.Automaton(states, alphabet, initial_state, accepting_states, transitions)
 
         gramatica = {
@@ -260,7 +269,7 @@ def main():
 
         filename = input("Enter the filename: ")
         file_lines = read_file(filename)
-        file_lines[-1] = ''.join([file_lines[-1], ' '])
+        print(file_lines)
         if file_lines is not None:  
             for line in file_lines:
                 try:
